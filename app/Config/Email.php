@@ -47,7 +47,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'smtp.googlemail.com';
+	public $SMTPHost;
 
 	/**
 	 * SMTP Username
