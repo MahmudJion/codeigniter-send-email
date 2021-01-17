@@ -19,7 +19,7 @@ class SendMail extends Controller
         $email = \Config\Services::email();
 
         $email->setTo($to);
-        $email->setFrom('johndoe@gmail.com', 'Confirm Registration');
+        $email->setFrom('john@test.com', 'Confirm Registration');
 
         $email->setSubject($subject);
         $email->setMessage($message);
