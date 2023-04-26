@@ -1,171 +1,168 @@
 <?php
+
 namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Protocol
+    |--------------------------------------------------------------------------
+    |
+    | The mail sending protocol. Valid options: mail, sendmail, smtp
+    |
+    */
+    public $protocol = 'smtp';
 
-	/**
-	 * @var string
-	 */
-	public $fromEmail;
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Host
+    |--------------------------------------------------------------------------
+    |
+    | The hostname of your SMTP server.
+    |
+    */
+    public $SMTPHost = 'smtp.gmail.com';
 
-	/**
-	 * @var string
-	 */
-	public $fromName;
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Port
+    |--------------------------------------------------------------------------
+    |
+    | The SMTP port used by your server.
+    |
+    */
+    public $SMTPPort = 465;
 
-	/**
-	 * @var string
-	 */
-	public $recipients;
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Timeout
+    |--------------------------------------------------------------------------
+    |
+    | The SMTP connection timeout in seconds.
+    |
+    */
+    public $SMTPTimeout = 30;
 
-	/**
-	 * The "user agent"
-	 *
-	 * @var string
-	 */
-	public $userAgent = 'CodeIgniter';
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP User
+    |--------------------------------------------------------------------------
+    |
+    | The SMTP username for your email account.
+    |
+    */
+    public $SMTPUser = 'your_email@example.com';
 
-	/**
-	 * The mail sending protocol: mail, sendmail, smtp
-	 *
-	 * @var string
-	 */
-	public $protocol = 'smtp';
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Password
+    |--------------------------------------------------------------------------
+    |
+    | The SMTP password for your email account.
+    |
+    */
+    public $SMTPPass = 'your_email_password';
 
-	/**
-	 * The server path to Sendmail.
-	 *
-	 * @var string
-	 */
-	public $mailPath = '/usr/sbin/sendmail';
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Encryption
+    |--------------------------------------------------------------------------
+    |
+    | The SMTP encryption method. Valid options: ssl, tls
+    |
+    */
+    public $SMTPCrypto = 'ssl';
 
-	/**
-	 * SMTP Server Address
-	 *
-	 * @var string
-	 */
-	public $SMTPHost;
+    /*
+    |--------------------------------------------------------------------------
+    | CRLF Replacement
+    |--------------------------------------------------------------------------
+    |
+    | The replacement string for the newline characters. Valid options: "\r\n", "\n", "\r"
+    |
+    */
+    public $CRLF = "\r\n";
 
-	/**
-	 * SMTP Username
-	 *
-	 * @var string
-	 */
-	public $SMTPUser;
+    /*
+    |--------------------------------------------------------------------------
+    | Newline Replacement
+    |--------------------------------------------------------------------------
+    |
+    | The replacement string for the newline characters. Valid options: "\r\n", "\n", "\r"
+    |
+    */
+    public $newline = "\r\n";
 
-	/**
-	 * SMTP Password
-	 *
-	 * @var string
-	 */
-	public $SMTPPass;
+    /*
+    |--------------------------------------------------------------------------
+    | Mail Type
+    |--------------------------------------------------------------------------
+    |
+    | The type of email. Valid options: text, html
+    |
+    */
+    public $mailType = 'text';
 
-	/**
-	 * SMTP Port
-	 *
-	 * @var integer
-	 */
-	public $SMTPPort = 465;
+    /*
+    |--------------------------------------------------------------------------
+    | Character Set
+    |--------------------------------------------------------------------------
+    |
+    | The character encoding scheme for the email.
+    |
+    */
+    public $charset = 'UTF-8';
 
-	/**
-	 * SMTP Timeout (in seconds)
-	 *
-	 * @var integer
-	 */
-	public $SMTPTimeout = 60;
+    /*
+    |--------------------------------------------------------------------------
+    | Word Wrap
+    |--------------------------------------------------------------------------
+    |
+    | Enable word-wrap. Valid options: true, false
+    |
+    */
+    public $wordWrap = true;
 
-	/**
-	 * Enable persistent SMTP connections
-	 *
-	 * @var boolean
-	 */
-	public $SMTPKeepAlive = false;
+    /*
+    |--------------------------------------------------------------------------
+    | Wrap Length
+    |--------------------------------------------------------------------------
+    |
+    | The number of characters to wrap at.
+    |
+    */
+    public $wrapChars = 76;
 
-	/**
-	 * SMTP Encryption. Either tls or ssl
-	 *
-	 * @var string
-	 */
-	public $SMTPCrypto = 'ssl';
+    /*
+    |--------------------------------------------------------------------------
+    | Multi-Part Format
+    |--------------------------------------------------------------------------
+    |
+    | The multi-part email format. Valid options: mixed, related
+    |
+    */
+    public $multipart = 'mixed';
 
-	/**
-	 * Enable word-wrap
-	 *
-	 * @var boolean
-	 */
-	public $wordWrap = true;
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Keep Alive
+    |--------------------------------------------------------------------------
+    |
+    | Enable persistent SMTP connections. Valid options: true, false
+    |
+    */
+    public $SMTPKeepAlive = false;
 
-	/**
-	 * Character count to wrap at
-	 *
-	 * @var integer
-	 */
-	public $wrapChars = 76;
-
-	/**
-	 * Type of mail, either 'text' or 'html'
-	 *
-	 * @var string
-	 */
-	public $mailType = 'html';
-
-	/**
-	 * Character set (utf-8, iso-8859-1, etc.)
-	 *
-	 * @var string
-	 */
-	public $charset = 'UTF-8';
-
-	/**
-	 * Whether to validate the email address
-	 *
-	 * @var boolean
-	 */
-	public $validate = false;
-
-	/**
-	 * Email Priority. 1 = highest. 5 = lowest. 3 = normal
-	 *
-	 * @var integer
-	 */
-	public $priority = 3;
-
-	/**
-	 * Newline character. (Use “\r\n” to comply with RFC 822)
-	 *
-	 * @var string
-	 */
-	public $CRLF = "\r\n";
-
-	/**
-	 * Newline character. (Use “\r\n” to comply with RFC 822)
-	 *
-	 * @var string
-	 */
-	public $newline = "\r\n";
-
-	/**
-	 * Enable BCC Batch Mode.
-	 *
-	 * @var boolean
-	 */
-	public $BCCBatchMode = false;
-
-	/**
-	 * Number of emails in each BCC batch
-	 *
-	 * @var integer
-	 */
-	public $BCCBatchSize = 200;
-
-	/**
-	 * Enable notify message from server
-	 *
-	 * @var boolean
-	 */
-	public $DSN = false;
-
+    /*
+    |--------------------------------------------------------------------------
+    | SMTP Debug
+    |--------------------------------------------------------------------------
+    |
+    | Enable SMTP debug information. Valid options: 0, 1, 2, 3, 4, 5
+    |
+    */
+    public $SMTPDebug = 0;
 }
