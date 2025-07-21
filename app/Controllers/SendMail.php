@@ -42,12 +42,29 @@ class SendMail extends Controller
 
         if ($email->send()) {
             log_message('info', "Email sent to {$to} with subject '{$subject}'.");
+
+            $emailModel = new \App\Models\EmailModel();
+            $emailModel->insert([
+                'mailTo'   => $to,
+                'subject'  => $subject,
+                'message'  => $message,
+                'sent_at'  => date('Y-m-d H:i:s')
+            ]);
+
             return $this->response->setStatusCode(200)->setBody('Email successfully sent');
         } else {
             $data = $email->printDebugger(['headers']);
             log_message('error', "Email send failed to {$to}: {$data}");
             return $this->response->setStatusCode(500)->setBody($data);
         }
+    }
+
+    public function sentEmails()
+    {
+        $emailModel = new \App\Models\EmailModel();
+        $emails = $emailModel->findAll();
+
+        return view('sent_emails_view', ['emails' => $emails]);
     }
 
 }
