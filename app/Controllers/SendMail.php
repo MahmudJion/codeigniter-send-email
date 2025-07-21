@@ -11,27 +11,27 @@ class SendMail extends Controller
         return view('form_view');
     }
 
-    function sendMail() {
-        $to = $this->request->getVar('mailTo');
+    public function sendMail()
+    {
+        $to      = $this->request->getVar('mailTo');
         $subject = $this->request->getVar('subject');
         $message = $this->request->getVar('message');
 
-        $email = \Config\Services::email();
+        if (! $to || ! $subject || ! $message) {
+            return $this->response->setStatusCode(400)->setBody('Missing required fields');
+        }
 
+        $email = \Config\Services::email();
         $email->setTo($to);
         $email->setFrom('john@test.com', 'Confirm Registration');
-
         $email->setSubject($subject);
         $email->setMessage($message);
 
-        if ($email->send())
-		{
-            echo 'Email successfully sent';
-        }
-		else
-		{
+        if ($email->send()) {
+            return $this->response->setStatusCode(200)->setBody('Email successfully sent');
+        } else {
             $data = $email->printDebugger(['headers']);
-            print_r($data);
+            return $this->response->setStatusCode(500)->setBody($data);
         }
     }
 
